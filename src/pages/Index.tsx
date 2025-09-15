@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Gift, Heart, Calendar, PartyPopper, Sparkles } from "lucide-react";
+import { Gift, Heart, Calendar, PartyPopper, Sparkles, MapPin, Clock, Shirt, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -114,23 +114,83 @@ const Index = () => {
 
       {/* Party Details */}
       <section className="px-4 py-16 bg-card/50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <PartyPopper className="w-12 h-12 text-primary mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-6">Event Details</h2>
-          <div className="space-y-2 text-lg">
-            <p className="text-muted-foreground">
-              <span className="font-semibold text-foreground">Date:</span> Saturday, March 15, 2025
-            </p>
-            <p className="text-muted-foreground">
-              <span className="font-semibold text-foreground">Time:</span> 7:00 PM
-            </p>
-            <p className="text-muted-foreground">
-              <span className="font-semibold text-foreground">Venue:</span> The Grand Ballroom
-            </p>
-            <p className="text-muted-foreground">
-              <span className="font-semibold text-foreground">Dress Code:</span> Cocktail Attire
-            </p>
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-8">
+            <PartyPopper className="w-12 h-12 text-primary mx-auto mb-4" />
+            <h2 className="text-3xl font-bold mb-6">Event Details</h2>
           </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <Card className="p-6 border-primary/20">
+              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary" />
+                When & Where
+              </h3>
+              <div className="space-y-3">
+                <p className="flex items-start gap-2">
+                  <Calendar className="w-4 h-4 text-muted-foreground mt-1" />
+                  <span>
+                    <span className="font-semibold">Date:</span> Friday, 4th October 2024
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <Clock className="w-4 h-4 text-muted-foreground mt-1" />
+                  <span>
+                    <span className="font-semibold">Time:</span> 1:00 PM
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
+                  <span>
+                    <span className="font-semibold">Venue:</span> Westwood Hotel
+                  </span>
+                </p>
+              </div>
+            </Card>
+            
+            <Card className="p-6 border-secondary/20">
+              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                <Shirt className="w-5 h-5 text-secondary" />
+                Dress Code
+              </h3>
+              <div className="space-y-3">
+                <p className="font-semibold text-primary">Theme: Polo Bear by Ralph Lauren</p>
+                <p className="text-muted-foreground">
+                  Feel free to dress in smart casual attire:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-primary/10 rounded-full text-sm">Navy</span>
+                  <span className="px-3 py-1 bg-secondary/10 rounded-full text-sm">White</span>
+                  <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Beige</span>
+                  <span className="px-3 py-1 bg-muted rounded-full text-sm">Preppy Chic</span>
+                </div>
+                <p className="text-sm italic text-muted-foreground">
+                  Come as you're comfortable!
+                </p>
+              </div>
+            </Card>
+          </div>
+          
+          <Card className="p-6 border-accent/20">
+            <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+              <ShoppingBag className="w-5 h-5 text-accent" />
+              Shopping Suggestions
+            </h3>
+            <p className="text-muted-foreground mb-3">
+              Find perfect gifts at these recommended stores:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Peekaboo</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Toyworld</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Wamachua (Instagram)</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Babyshop Village Market</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Karen The Hub</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Woolworths</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Ashna Homes</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Kids World</span>
+              <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Jumia</span>
+            </div>
+          </Card>
         </div>
       </section>
 
