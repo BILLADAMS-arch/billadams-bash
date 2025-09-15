@@ -3,11 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Heart, Send, MessageSquare } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Guestbook = () => {
@@ -15,9 +14,10 @@ const Guestbook = () => {
   const [loading, setLoading] = useState(false);
   const [fetchingWishes, setFetchingWishes] = useState(true);
   const [formData, setFormData] = useState({
-    guestName: "",
     message: "",
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchWishes();
@@ -47,29 +47,19 @@ const Guestbook = () => {
     setLoading(true);
 
     try {
-      // First, find or create guest
-      let guestId = localStorage.getItem("guestId");
-      
-      if (!guestId) {
-        // Create a new guest entry
-        const { data: guestData, error: guestError } = await supabase
-          .from("guests")
-          .insert([{ 
-            name: formData.guestName,
-            contact: "guestbook@entry.com",
-            rsvp_status: "maybe",
-            adults_count: 0,
-            children_count: 0
-          }])
-          .select()
-          .single();
+      const guestId = localStorage.getItem("guestId");
 
-        if (guestError) throw guestError;
-        guestId = guestData.id;
-        localStorage.setItem("guestId", guestId);
+      if (!guestId) {
+        toast({
+          title: "RSVP Required",
+          description: "Please RSVP first before leaving a message.",
+          variant: "destructive",
+        });
+        navigate("/rsvp"); // 👈 redirect them to RSVP page
+        return;
       }
 
-      // Create wish
+      // Create wish linked to RSVP guest
       const { error: wishError } = await supabase
         .from("wishes")
         .insert([{
@@ -84,7 +74,7 @@ const Guestbook = () => {
         description: "Thank you for your birthday wishes!",
       });
 
-      setFormData({ guestName: "", message: "" });
+      setFormData({ message: "" });
       fetchWishes();
     } catch (error: any) {
       toast({
@@ -134,19 +124,6 @@ const Guestbook = () => {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
-                {!localStorage.getItem("guestId") && (
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Your Name</Label>
-                    <Input
-                      id="name"
-                      required
-                      value={formData.guestName}
-                      onChange={(e) => setFormData({ ...formData, guestName: e.target.value })}
-                      placeholder="John Doe"
-                    />
-                  </div>
-                )}
-                
                 <div className="space-y-2">
                   <Label htmlFor="message">Your Message</Label>
                   <Textarea
