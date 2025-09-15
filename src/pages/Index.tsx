@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Gift, Heart, Calendar, PartyPopper, Sparkles, MapPin, Clock, Shirt, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import PhotoGallery from "@/components/PhotoGallery";
 
 const Index = () => {
   return (
@@ -193,6 +194,9 @@ const Index = () => {
           </Card>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      <PhotoGallery />
 
       {/* Admin Link */}
       <footer className="px-4 py-8 text-center">
