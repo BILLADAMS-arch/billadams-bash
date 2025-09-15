@@ -2,15 +2,46 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
 import Index from "./pages/Index";
 import RSVP from "./pages/RSVP";
 import Gifts from "./pages/Gifts";
 import Guestbook from "./pages/Guestbook";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login"; // make sure you have this page
 
 const queryClient = new QueryClient();
+
+// 🔐 Protected route wrapper for admin
+const ProtectedAdminRoute = ({ children }: { children: JSX.Element }) => {
+  const [allowed, setAllowed] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    async function checkAuth() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email === "nyamweno.billadams@gmail.com") {
+        setAllowed(true);
+      } else {
+        setAllowed(false);
+      }
+    }
+    checkAuth();
+  }, []);
+
+  if (allowed === null) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Checking access...</p>
+      </div>
+    );
+  }
+
+  return allowed ? children : <Navigate to="/login" replace />;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -38,8 +69,16 @@ const App = () => (
               <Route path="/rsvp" element={<RSVP />} />
               <Route path="/gifts" element={<Gifts />} />
               <Route path="/guestbook" element={<Guestbook />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminDashboard />
+                  </ProtectedAdminRoute>
+                }
+              />
+              {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
