@@ -21,8 +21,8 @@ import JJ7 from "@/assets/gallery/JJ7.jpeg";
 import JJ8 from "@/assets/gallery/JJ8.jpeg";
 import JJ9 from "@/assets/gallery/JJ9.jpeg";
 import JJ10 from "@/assets/gallery/JJ10.jpeg";
-import JJ11 from "@/assets/gallery/JJ10.jpeg";
-import JJ12 from "@/assets/gallery/JJ10.jpeg";
+import JJ11 from "@/assets/gallery/JJ11.jpeg";
+import JJ12 from "@/assets/gallery/JJ12.jpeg";
 
 const galleryImages = [
   { src: JJ1, alt: "Baby Jonathan wrapped in a soft blanket" },
@@ -35,6 +35,9 @@ const galleryImages = [
   { src: JJ8, alt: "Jonathan smiling in red outfit" },
   { src: JJ9, alt: "Jonathan looking curious" },
   { src: JJ10, alt: "Jonathan in blue fuzzy outfit smiling" },
+  { src: JJ11, alt: "Jonathan with dad" },
+  { src: JJ12, alt: "Jonathan on 1 month" },
+
 ];
 
 export default function PhotoGallery() {
