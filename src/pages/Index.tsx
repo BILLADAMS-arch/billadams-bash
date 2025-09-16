@@ -136,7 +136,7 @@ const Index = () => {
                   <p className="flex items-start gap-2">
                     <Calendar className="w-4 h-4 text-muted-foreground mt-1" />
                     <span>
-                      <span className="font-semibold">Date:</span> Friday, 4th October 2024
+                      <span className="font-semibold">Date:</span> Saturday, 4th October 2024
                     </span>
                   </p>
                   <p className="flex items-start gap-2">

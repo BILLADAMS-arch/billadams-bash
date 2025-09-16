@@ -83,7 +83,7 @@ const AdminDashboard = () => {
           acc.totalGuests++;
           if (guest.rsvp_status === "attending") acc.attending++;
           if (guest.rsvp_status === "not_attending") acc.notAttending++;
-          if (guest.rsvp_status === "not attending") acc.maybe++;
+          if (guest.rsvp_status === "not attending") acc.notAttending++;
           acc.totalAdults += guest.adults_count || 0;
           acc.totalChildren += guest.children_count || 0;
           return acc;
@@ -188,7 +188,7 @@ const AdminDashboard = () => {
         return <Badge className="bg-green-500/10 text-green-600 border-green-200"><CheckCircle className="w-3 h-3 mr-1" />Attending</Badge>;
       case "not_attending":
         return <Badge variant="destructive"><XCircle className="w-3 h-3 mr-1" />Not Attending</Badge>;
-      case "maybe":
+      case "not attending":
         return <Badge variant="secondary"><Clock className="w-3 h-3 mr-1" />Maybe</Badge>;
       default:
         return <Badge>{status}</Badge>;
