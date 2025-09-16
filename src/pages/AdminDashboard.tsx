@@ -229,10 +229,18 @@ const AdminDashboard = () => {
             </h1>
             <p className="text-muted-foreground">Manage birthday party details</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Button variant="outline" onClick={exportGuestList}>
               <Download className="mr-2 h-4 w-4" />
-              Export Guest List
+              Export Guests
+            </Button>
+            <Button variant="outline" onClick={exportGifts}>
+              <Download className="mr-2 h-4 w-4" />
+              Export Gifts
+            </Button>
+            <Button variant="outline" onClick={exportMessages}>
+              <Download className="mr-2 h-4 w-4" />
+              Export Messages
             </Button>
             <Button variant="ghost" asChild>
               <Link to="/">

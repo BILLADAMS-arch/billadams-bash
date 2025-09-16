@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, UserPlus, Users, Baby } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { WorkflowSteps } from "@/components/WorkflowSteps";
 
 const RSVP = () => {
   const navigate = useNavigate();
@@ -65,6 +66,8 @@ const RSVP = () => {
             Back to Home
           </Link>
         </Button>
+
+        <WorkflowSteps currentStep="rsvp" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

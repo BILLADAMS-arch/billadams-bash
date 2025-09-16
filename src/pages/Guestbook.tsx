@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Heart, Send, MessageSquare } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { WorkflowSteps } from "@/components/WorkflowSteps";
 
 const Guestbook = () => {
   const [wishes, setWishes] = useState<any[]>([]);
@@ -76,6 +77,14 @@ const Guestbook = () => {
 
       setFormData({ message: "" });
       fetchWishes();
+      
+      // Show thank you message
+      setTimeout(() => {
+        toast({
+          title: "Thank You!",
+          description: "Your birthday wishes have been recorded. Have a great day!",
+        });
+      }, 1000);
     } catch (error: any) {
       toast({
         title: "Error",
@@ -96,6 +105,8 @@ const Guestbook = () => {
             Back to Home
           </Link>
         </Button>
+
+        <WorkflowSteps currentStep="guestbook" />
 
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent mb-2">

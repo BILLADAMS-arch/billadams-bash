@@ -5,10 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Gift, ShoppingCart, ExternalLink, Bike, Brain, Palette, Baby, Home, Trees, Shield, Moon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { WorkflowSteps } from "@/components/WorkflowSteps";
 
 const Gifts = () => {
+  const navigate = useNavigate();
   const [gifts, setGifts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedGuestId, setSelectedGuestId] = useState<string | null>(null);
@@ -117,6 +119,8 @@ const Gifts = () => {
             Back to Home
           </Link>
         </Button>
+
+        <WorkflowSteps currentStep="gifts" />
 
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-2">
