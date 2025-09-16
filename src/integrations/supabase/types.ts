@@ -51,6 +51,7 @@ export type Database = {
           link: string | null
           name: string
           price_estimate: number | null
+          reserved_at: string | null
           reserved_by: string | null
         }
         Insert: {
@@ -62,6 +63,7 @@ export type Database = {
           link?: string | null
           name: string
           price_estimate?: number | null
+          reserved_at?: string | null
           reserved_by?: string | null
         }
         Update: {
@@ -73,6 +75,7 @@ export type Database = {
           link?: string | null
           name?: string
           price_estimate?: number | null
+          reserved_at?: string | null
           reserved_by?: string | null
         }
         Relationships: [
