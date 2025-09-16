@@ -31,7 +31,7 @@ import JJ17 from "@/assets/gallery/JJ17.jpeg";
 import JJ18 from "@/assets/gallery/JJ18.jpeg";
 import JJ19 from "@/assets/gallery/JJ19.jpeg";
 import JJ20 from "@/assets/gallery/JJ20.jpeg";
-import JJ21 from "@/assets/gallery/JJ12.jpeg";
+import JJ21 from "@/assets/gallery/JJ21.jpeg";
 
 
 
