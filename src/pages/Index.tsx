@@ -207,7 +207,6 @@ const Index = () => {
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Babyshop Village Market</span>
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Karen The Hub</span>
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Woolworths</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Ashna Homes</span>
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Kids World</span>
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Jumia</span>
               </div>
