@@ -80,7 +80,7 @@ const RSVP = () => {
                 RSVP for Jonathan's Birthday
               </CardTitle>
               <CardDescription className="text-lg">
-                Please let us know if you can join us for the celebration
+                Kindly RSVP by 19th September 2025 to confirm your attendance as we celebrate Jonathan’s 1st birthday.
               </CardDescription>
             </CardHeader>
             <CardContent>
