@@ -93,7 +93,7 @@ const Index = () => {
                   <h3 className="text-xl font-semibold mb-2">J's Wish List</h3>
                   <p className="text-muted-foreground mb-4">Browse and reserve gifts from J&apos;s wishlist</p>
                   <Button variant="link" className="p-0" asChild>
-                    <Link to="/gifts">View Registry →</Link>
+                    <Link to="/gifts">View Wish List →</Link>
                   </Button>
                 </Card>
               </motion.div>
