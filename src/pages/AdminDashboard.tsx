@@ -83,7 +83,7 @@ const AdminDashboard = () => {
           acc.totalGuests++;
           if (guest.rsvp_status === "attending") acc.attending++;
           if (guest.rsvp_status === "not_attending") acc.notAttending++;
-          if (guest.rsvp_status === "maybe") acc.maybe++;
+          if (guest.rsvp_status === "not attending") acc.maybe++;
           acc.totalAdults += guest.adults_count || 0;
           acc.totalChildren += guest.children_count || 0;
           return acc;
