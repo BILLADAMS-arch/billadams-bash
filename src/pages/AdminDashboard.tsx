@@ -279,12 +279,9 @@ const AdminDashboard = () => {
                   <span className="text-green-600">Attending:</span>
                   <span className="font-semibold">{stats.attending}</span>
                 </div>
+                
                 <div className="flex justify-between text-sm">
-                  <span className="text-red-600">Not Attending:</span>
-                  <span className="font-semibold">{stats.notAttending}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-amber-600">Maybe:</span>
+                  <span className="text-amber-600">Not Attendng:</span>
                   <span className="font-semibold">{stats.maybe}</span>
                 </div>
               </div>
@@ -399,7 +396,7 @@ const AdminDashboard = () => {
                     {gifts.map((gift) => (
                       <TableRow key={gift.id}>
                         <TableCell className="font-medium">{gift.name}</TableCell>
-                        <TableCell>₦{gift.price_estimate?.toLocaleString()}</TableCell>
+                        <TableCell>Kshs{gift.price_estimate?.toLocaleString()}</TableCell>
                         <TableCell>
                           {gift.is_reserved ? (
                             <Badge className="bg-green-500/10 text-green-600 border-green-200">Reserved</Badge>
