@@ -134,10 +134,52 @@ const AdminDashboard = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "guest-list.csv";
+    a.download = `guest-list-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
 
     toast({ title: "Guest list exported", description: "The CSV file has been downloaded" });
+  };
+
+  const exportGifts = () => {
+    const csv = [
+      ["Gift Name", "Price", "Status", "Reserved By", "Reserved Date"],
+      ...gifts.map(g => [
+        g.name,
+        g.price_estimate || "N/A",
+        g.is_reserved ? "Reserved" : "Available",
+        g.guests?.name || "",
+        g.reserved_at ? new Date(g.reserved_at).toLocaleDateString() : ""
+      ])
+    ].map(row => row.join(",")).join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `gift-registry-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+
+    toast({ title: "Gift registry exported", description: "The CSV file has been downloaded" });
+  };
+
+  const exportMessages = () => {
+    const csv = [
+      ["From", "Message", "Date"],
+      ...wishes.map(w => [
+        w.guests?.name || "Anonymous",
+        `"${w.message.replace(/"/g, '""')}"`, // Escape quotes in messages
+        new Date(w.created_at).toLocaleDateString()
+      ])
+    ].map(row => row.join(",")).join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `birthday-messages-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+
+    toast({ title: "Messages exported", description: "The CSV file has been downloaded" });
   };
 
   const getRSVPBadge = (status: string) => {
@@ -282,9 +324,15 @@ const AdminDashboard = () => {
           {/* Guests Tab */}
           <TabsContent value="guests">
             <Card>
-              <CardHeader>
-                <CardTitle>Guest List</CardTitle>
-                <CardDescription>All RSVPs received</CardDescription>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Guest List</CardTitle>
+                  <CardDescription>All RSVPs received</CardDescription>
+                </div>
+                <Button variant="outline" size="sm" onClick={exportGuestList}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -318,9 +366,15 @@ const AdminDashboard = () => {
           {/* Gifts Tab */}
           <TabsContent value="gifts">
             <Card>
-              <CardHeader>
-                <CardTitle>Gift Registry</CardTitle>
-                <CardDescription>Gift reservation status</CardDescription>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Gift Registry</CardTitle>
+                  <CardDescription>Gift reservation status</CardDescription>
+                </div>
+                <Button variant="outline" size="sm" onClick={exportGifts}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -360,9 +414,15 @@ const AdminDashboard = () => {
           {/* Wishes Tab */}
           <TabsContent value="wishes">
             <Card>
-              <CardHeader>
-                <CardTitle>Birthday Messages</CardTitle>
-                <CardDescription>Guestbook entries</CardDescription>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Birthday Messages</CardTitle>
+                  <CardDescription>Guestbook entries</CardDescription>
+                </div>
+                <Button variant="outline" size="sm" onClick={exportMessages}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Export CSV
+                </Button>
               </CardHeader>
               <CardContent>
                 <Table>
