@@ -35,10 +35,7 @@ const Index = () => {
               <h1 className="text-6xl md:text-8xl font-bold text-[hsl(var(--heading))] mb-4">
                 J’s 𝒪𝒩𝐸derful Polo Bear Bash🐻🏇✨
               </h1>
-              <p className="text-2xl md:text-3xl text-[hsl(var(--heading))] mb-8">
-                Join us for an unforgettable celebration!
-              </p>
-
+          
               <div className="flex flex-wrap justify-center gap-4">
                 <Button
                   size="lg"
