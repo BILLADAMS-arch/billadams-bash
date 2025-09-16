@@ -127,7 +127,7 @@ const Gifts = () => {
             Gift Registry
           </h1>
           <p className="text-muted-foreground text-lg">
-            Help make Jonathan's birthday special by choosing a gift
+            Your presence is a present, however, if you would like to gift J, here are a few ideas.
           </p>
         </div>
 

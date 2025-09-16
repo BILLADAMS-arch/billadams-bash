@@ -32,7 +32,7 @@ const Index = () => {
               </div>
 
               <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-4">
-                Jonathan's First Birthday
+                J’s 𝒪𝒩𝐸derful Polo Bear Bash🐻🏇✨
               </h1>
               <p className="text-2xl md:text-3xl text-muted-foreground mb-8">
                 Join us for an unforgettable celebration!
@@ -67,7 +67,7 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">RSVP</h3>
                   <p className="text-muted-foreground mb-4">
-                    Let us know if you can make it to the celebration
+                    J can’t wait to celebrate with you! Please let us know if you’ll join the fun by 19th September 2025
                   </p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/rsvp">Respond Now →</Link>
@@ -138,7 +138,13 @@ const Index = () => {
                   <p className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
                     <span>
-                      <span className="font-semibold">Venue:</span> Westwood Hotel
+                      <span className="font-semibold">Venue:</span> Westwood Hotel, Limuru Road, Nairobi
+                    </span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
+                    <span>
+                      <span className="font-semibold">HOST NOTE: There are limited parking spaces, you're requested to make alternative arrangements for parking or use taxi</span> 
                     </span>
                   </p>
                 </div>
