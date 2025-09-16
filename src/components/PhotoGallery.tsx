@@ -23,6 +23,17 @@ import JJ9 from "@/assets/gallery/JJ9.jpeg";
 import JJ10 from "@/assets/gallery/JJ10.jpeg";
 import JJ11 from "@/assets/gallery/JJ11.jpeg";
 import JJ12 from "@/assets/gallery/JJ12.jpeg";
+import JJ13 from "@/assets/gallery/JJ13.jpeg";
+import JJ14 from "@/assets/gallery/JJ14.jpeg";
+import JJ15 from "@/assets/gallery/JJ15.jpeg";
+import JJ16 from "@/assets/gallery/JJ16.jpeg";
+import JJ17 from "@/assets/gallery/JJ17.jpeg";
+import JJ18 from "@/assets/gallery/JJ18.jpeg";
+import JJ19 from "@/assets/gallery/JJ19.jpeg";
+import JJ20 from "@/assets/gallery/JJ20.jpeg";
+import JJ21 from "@/assets/gallery/JJ12.jpeg";
+
+
 
 const galleryImages = [
   { src: JJ1, alt: "Baby Jonathan wrapped in a soft blanket" },
@@ -37,6 +48,16 @@ const galleryImages = [
   { src: JJ10, alt: "Jonathan in blue fuzzy outfit smiling" },
   { src: JJ11, alt: "Jonathan with dad" },
   { src: JJ12, alt: "Jonathan on 1 month" },
+  { src: JJ13, alt: "Jonathan on 1 month" },
+  { src: JJ14, alt: "Jonathan on 1 month" },
+  { src: JJ15, alt: "Jonathan on 1 month" },
+  { src: JJ16, alt: "Jonathan on 1 month" },
+  { src: JJ17, alt: "Jonathan on 1 month" },
+  { src: JJ18, alt: "Jonathan on 1 month" },
+  { src: JJ19, alt: "Jonathan on 1 month" },
+  { src: JJ20, alt: "Jonathan on 1 month" },
+  { src: JJ21, alt: "Jonathan on 1 month" },
+  
 
 ];
 
