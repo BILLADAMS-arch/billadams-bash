@@ -26,13 +26,22 @@ const RSVP = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("guests").insert([formData]);
+      const { data, error } = await supabase
+        .from("guests")
+        .insert([formData])
+        .select()
+        .single();
 
       if (error) throw error;
 
+      // Store guest ID for gift reservation and guestbook
+      if (data) {
+        localStorage.setItem("guestId", data.id);
+      }
+
       toast({
         title: "RSVP Confirmed!",
-        description: "Thank you for responding. We look forward to celebrating with you!",
+        description: "Thank you for your response. You can now reserve a gift!",
       });
 
       navigate("/gifts");

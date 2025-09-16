@@ -51,7 +51,7 @@ const Gifts = () => {
     try {
       const { data, error } = await supabase
         .from("gifts")
-        .select("*")
+        .select("*, guests:reserved_by(name)")
         .order("price_estimate", { ascending: true });
 
       if (error) throw error;
@@ -66,10 +66,13 @@ const Gifts = () => {
   const handleReserve = async (giftId: string) => {
     if (!selectedGuestId) {
       toast({
-        title: "Please RSVP first",
-        description: "You need to RSVP before reserving gifts",
+        title: "RSVP Required",
+        description: "Please RSVP first to reserve a gift.",
         variant: "destructive",
       });
+      setTimeout(() => {
+        window.location.href = "/rsvp";
+      }, 2000);
       return;
     }
 
@@ -87,10 +90,15 @@ const Gifts = () => {
 
       toast({
         title: "Gift Reserved!",
-        description: "Thank you for reserving this gift!",
+        description: "Thank you for reserving this gift. You can now leave a message in the guestbook.",
       });
 
       fetchGifts();
+      
+      // Navigate to guestbook after short delay
+      setTimeout(() => {
+        window.location.href = "/guestbook";
+      }, 2000);
     } catch (error: any) {
       toast({
         title: "Error",
@@ -209,11 +217,13 @@ const Gifts = () => {
           </Tabs>
         )}
 
-        <div className="mt-12 text-center">
-          <Button variant="outline" asChild>
+        <div className="mt-12 text-center space-y-4">
+          <p className="text-muted-foreground">
+            Reserve a gift above or proceed to leave a birthday message
+          </p>
+          <Button size="lg" asChild>
             <Link to="/guestbook">
-              <Gift className="mr-2 h-4 w-4" />
-              Continue to Guestbook
+              Continue to Guestbook →
             </Link>
           </Button>
         </div>

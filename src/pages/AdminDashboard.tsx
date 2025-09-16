@@ -59,7 +59,10 @@ const AdminDashboard = () => {
       // Gifts
       const { data: giftsData, error: giftsError } = await supabase
         .from("gifts")
-        .select("*, guests (name)")
+        .select(`
+          *,
+          guests:reserved_by (name)
+        `)
         .order("price_estimate", { ascending: true });
       if (giftsError) throw giftsError;
 
@@ -202,9 +205,188 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Stats + Tabs remain unchanged (your existing code here) */}
-        {/* ... keep the Stats Cards */}
-        {/* ... keep the Guests, Gifts, Wishes tabs */}
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">Total Guests</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalGuests}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                {stats.totalAdults} adults, {stats.totalChildren} children
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">RSVP Status</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-1">
+                <div className="flex justify-between text-sm">
+                  <span className="text-green-600">Attending:</span>
+                  <span className="font-semibold">{stats.attending}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-red-600">Not Attending:</span>
+                  <span className="font-semibold">{stats.notAttending}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-amber-600">Maybe:</span>
+                  <span className="font-semibold">{stats.maybe}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">Gifts</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.reservedGifts}/{stats.totalGifts}</div>
+              <p className="text-xs text-muted-foreground mt-1">Reserved</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">Messages</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalWishes}</div>
+              <p className="text-xs text-muted-foreground mt-1">Birthday wishes</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Tabs */}
+        <Tabs defaultValue="guests" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="guests">
+              <Users className="mr-2 h-4 w-4" />
+              Guests
+            </TabsTrigger>
+            <TabsTrigger value="gifts">
+              <Gift className="mr-2 h-4 w-4" />
+              Gifts
+            </TabsTrigger>
+            <TabsTrigger value="wishes">
+              <MessageSquare className="mr-2 h-4 w-4" />
+              Messages
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Guests Tab */}
+          <TabsContent value="guests">
+            <Card>
+              <CardHeader>
+                <CardTitle>Guest List</CardTitle>
+                <CardDescription>All RSVPs received</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Contact</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Adults</TableHead>
+                      <TableHead>Children</TableHead>
+                      <TableHead>Date</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {guests.map((guest) => (
+                      <TableRow key={guest.id}>
+                        <TableCell className="font-medium">{guest.name}</TableCell>
+                        <TableCell>{guest.contact}</TableCell>
+                        <TableCell>{getRSVPBadge(guest.rsvp_status)}</TableCell>
+                        <TableCell>{guest.adults_count || 0}</TableCell>
+                        <TableCell>{guest.children_count || 0}</TableCell>
+                        <TableCell>{new Date(guest.created_at).toLocaleDateString()}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Gifts Tab */}
+          <TabsContent value="gifts">
+            <Card>
+              <CardHeader>
+                <CardTitle>Gift Registry</CardTitle>
+                <CardDescription>Gift reservation status</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Gift</TableHead>
+                      <TableHead>Price</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Reserved By</TableHead>
+                      <TableHead>Reserved Date</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {gifts.map((gift) => (
+                      <TableRow key={gift.id}>
+                        <TableCell className="font-medium">{gift.name}</TableCell>
+                        <TableCell>₦{gift.price_estimate?.toLocaleString()}</TableCell>
+                        <TableCell>
+                          {gift.is_reserved ? (
+                            <Badge className="bg-green-500/10 text-green-600 border-green-200">Reserved</Badge>
+                          ) : (
+                            <Badge variant="secondary">Available</Badge>
+                          )}
+                        </TableCell>
+                        <TableCell>{gift.guests?.name || "-"}</TableCell>
+                        <TableCell>
+                          {gift.reserved_at ? new Date(gift.reserved_at).toLocaleDateString() : "-"}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Wishes Tab */}
+          <TabsContent value="wishes">
+            <Card>
+              <CardHeader>
+                <CardTitle>Birthday Messages</CardTitle>
+                <CardDescription>Guestbook entries</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>From</TableHead>
+                      <TableHead>Message</TableHead>
+                      <TableHead>Date</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {wishes.map((wish) => (
+                      <TableRow key={wish.id}>
+                        <TableCell className="font-medium">{wish.guests?.name || "Anonymous"}</TableCell>
+                        <TableCell className="max-w-md">{wish.message}</TableCell>
+                        <TableCell>{new Date(wish.created_at).toLocaleDateString()}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
