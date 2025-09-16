@@ -92,7 +92,7 @@ const RSVP = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Jonathan"
+                    placeholder="Name"
                   />
                 </div>
 
@@ -103,7 +103,7 @@ const RSVP = () => {
                     required
                     value={formData.contact}
                     onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                    placeholder="email or Phone number"
+                    placeholder="Email or Phone number"
                   />
                 </div>
 

@@ -122,14 +122,15 @@ const Gifts = () => {
 
         <WorkflowSteps currentStep="gifts" />
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-2">
-            Gift Registry
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Your presence is a present, however, if you would like to gift J, here are a few ideas.
-          </p>
-        </div>
+<div className="text-center mb-8">
+  <h1 className="text-4xl font-bold text-[hsl(var(--heading))] mb-2">
+    J’s Wish List
+  </h1>
+  <p className="text-lg text-[hsl(var(--heading))]">
+    Your presence is a present, however, if you would like to gift J, here are a few ideas.
+  </p>
+</div>
+
 
         {loading ? (
           <div className="text-center py-12">Loading gifts...</div>

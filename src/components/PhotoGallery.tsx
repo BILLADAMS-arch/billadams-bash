@@ -67,7 +67,7 @@ export default function PhotoGallery() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-primary mb-4">
-              Jonathan's Photo Gallery
+              J's Photo Gallery
             </h2>
             <p className="text-muted-foreground">
               Precious moments from birth to now

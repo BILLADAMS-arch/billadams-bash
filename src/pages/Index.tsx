@@ -50,7 +50,7 @@ const Index = () => {
                 <Button size="lg" variant="outline" className="border-2" asChild>
                   <Link to="/gifts">
                     <Gift className="mr-2 h-5 w-5" />
-                    View Gift Registry
+                    View J's Wishlist
                   </Link>
                 </Button>
               </div>
@@ -90,8 +90,8 @@ const Index = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4">
                     <Gift className="w-6 h-6 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Gift Registry</h3>
-                  <p className="text-muted-foreground mb-4">Browse and reserve gifts from Jonathan&apos;s wishlist</p>
+                  <h3 className="text-xl font-semibold mb-2">J's Wish List</h3>
+                  <p className="text-muted-foreground mb-4">Browse and reserve gifts from J&apos;s wishlist</p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/gifts">View Registry →</Link>
                   </Button>
@@ -145,12 +145,21 @@ const Index = () => {
                       <span className="font-semibold">Time:</span> 1:00 PM
                     </span>
                   </p>
-                  <p className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
-                    <span>
-                      <span className="font-semibold">Venue:</span> Westwood Hotel, Limuru Road, Nairobi
-                    </span>
-                  </p>
+                 <p className="flex items-start gap-2">
+  <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
+  <span>
+    <span className="font-semibold">Venue:</span>{" "}
+    <a
+      href="https://maps.app.goo.gl/hj9t6Ah2ZooddgU76?g_st=ipc"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-primary underline hover:text-accent transition-colors"
+    >
+      Westwood Hotel, Eldama Ravine Rd, Nairobi
+    </a>
+  </span>
+</p>
+
                   <p className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
                     <span>
@@ -172,10 +181,14 @@ const Index = () => {
                   <p className="font-semibold text-primary">Theme: Polo Bear by Ralph Lauren</p>
                   <p className="text-muted-foreground">Feel free to dress in smart casual attire:</p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-primary/10 rounded-full text-sm">Navy Blue</span>
-                    <span className="px-3 py-1 bg-secondary/10 rounded-full text-sm">White</span>
-                    <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Beige</span>
-                    <span className="px-3 py-1 bg-muted rounded-full text-sm">Preppy Chic</span>
+                  <span className="px-3 py-1 bg-muted rounded-full text-sm"> Navy Blue</span>
+<span className="px-3 py-1 bg-muted rounded-full text-sm"> White</span>
+<span className="px-3 py-1 bg-muted rounded-full text-sm"> Beige</span>
+<span className="px-3 py-1 bg-muted rounded-full text-sm"> Preppy Chic</span>
+<span className="px-3 py-1 bg-muted rounded-full text-sm"> Black</span>
+<span className="px-3 py-1 bg-muted rounded-full text-sm"> Denim</span>
+<span className="px-3 py-1 bg-muted rounded-full text-sm"> Striped Polo Attire</span>
+
                   </div>
                   <p className="text-sm italic text-muted-foreground">But above all, Come as you&apos;re comfortable!</p>
                 </div>
