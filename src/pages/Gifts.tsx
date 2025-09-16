@@ -98,9 +98,9 @@ const Gifts = () => {
       fetchGifts();
       
       // Navigate to guestbook after short delay
-      setTimeout(() => {
-        window.location.href = "/guestbook";
-      }, 2000);
+     setTimeout(() => {
+  navigate("/guestbook");
+}, 2000);
     } catch (error: any) {
       toast({
         title: "Error",
