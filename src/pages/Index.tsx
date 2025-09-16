@@ -31,15 +31,20 @@ const Index = () => {
                 <span className="text-sm font-medium text-primary">You're Invited!</span>
               </div>
 
-              <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-4">
+              {/* Updated to dark navy heading color */}
+              <h1 className="text-6xl md:text-8xl font-bold text-[hsl(var(--heading))] mb-4">
                 J’s 𝒪𝒩𝐸derful Polo Bear Bash🐻🏇✨
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground mb-8">
+              <p className="text-2xl md:text-3xl text-[hsl(var(--heading))] mb-8">
                 Join us for an unforgettable celebration!
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all" asChild>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all"
+                  asChild
+                >
                   <Link to="/rsvp">
                     <Calendar className="mr-2 h-5 w-5" />
                     RSVP Now
@@ -60,7 +65,11 @@ const Index = () => {
         <section className="px-4 py-16">
           <div className="container mx-auto max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
                 <Card className="p-6 hover:shadow-xl transition-all hover:-translate-y-1 border-primary/20 bg-card/70 backdrop-blur-sm">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mb-4">
                     <Calendar className="w-6 h-6 text-primary-foreground" />
@@ -75,30 +84,34 @@ const Index = () => {
                 </Card>
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
                 <Card className="p-6 hover:shadow-xl transition-all hover:-translate-y-1 border-secondary/20 bg-card/70 backdrop-blur-sm">
                   <div className="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4">
                     <Gift className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Gift Registry</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Browse and reserve gifts from Jonathan's wishlist
-                  </p>
+                  <p className="text-muted-foreground mb-4">Browse and reserve gifts from Jonathan&apos;s wishlist</p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/gifts">View Registry →</Link>
                   </Button>
                 </Card>
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
                 <Card className="p-6 hover:shadow-xl transition-all hover:-translate-y-1 border-accent/20 bg-card/70 backdrop-blur-sm">
                   <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center mb-4">
                     <Heart className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Guestbook</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Leave your birthday wishes and messages
-                  </p>
+                  <p className="text-muted-foreground mb-4">Leave your birthday wishes and messages</p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/guestbook">Write a Message →</Link>
                   </Button>
@@ -113,12 +126,12 @@ const Index = () => {
           <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-8">
               <PartyPopper className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="text-3xl font-bold mb-6">Event Details</h2>
+              <h2 className="text-3xl font-bold text-[hsl(var(--heading))] mb-6">Event Details</h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Card className="p-6 border-primary/20 bg-card/70 backdrop-blur-sm">
-                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2 text-[hsl(var(--heading))]">
                   <Calendar className="w-5 h-5 text-primary" />
                   When & Where
                 </h3>
@@ -144,43 +157,40 @@ const Index = () => {
                   <p className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
                     <span>
-                      <span className="font-semibold">HOST NOTE: There are limited parking spaces, you're requested to make alternative arrangements for parking or use taxi</span> 
+                      <span className="font-semibold">
+                        HOST NOTE: There are limited parking spaces, you&apos;re requested to make alternative
+                        arrangements for parking or use taxi
+                      </span>
                     </span>
                   </p>
                 </div>
               </Card>
 
               <Card className="p-6 border-secondary/20 bg-card/70 backdrop-blur-sm">
-                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2 text-[hsl(var(--heading))]">
                   <Shirt className="w-5 h-5 text-secondary" />
                   Dress Code
                 </h3>
                 <div className="space-y-3">
                   <p className="font-semibold text-primary">Theme: Polo Bear by Ralph Lauren</p>
-                  <p className="text-muted-foreground">
-                    Feel free to dress in smart casual attire:
-                  </p>
+                  <p className="text-muted-foreground">Feel free to dress in smart casual attire:</p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 bg-primary/10 rounded-full text-sm">Navy Blue</span>
                     <span className="px-3 py-1 bg-secondary/10 rounded-full text-sm">White</span>
                     <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Beige</span>
                     <span className="px-3 py-1 bg-muted rounded-full text-sm">Preppy Chic</span>
                   </div>
-                  <p className="text-sm italic text-muted-foreground">
-                    But above all, Come as you're comfortable!
-                  </p>
+                  <p className="text-sm italic text-muted-foreground">But above all, Come as you&apos;re comfortable!</p>
                 </div>
               </Card>
             </div>
 
             <Card className="p-6 border-accent/20 bg-card/70 backdrop-blur-sm">
-              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2 text-[hsl(var(--heading))]">
                 <ShoppingBag className="w-5 h-5 text-accent" />
                 Shopping Suggestions
               </h3>
-              <p className="text-muted-foreground mb-3">
-                Find perfect gifts at these recommended stores:
-              </p>
+              <p className="text-muted-foreground mb-3">Find perfect gifts at these recommended stores:</p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Peekaboo</span>
                 <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Toyworld</span>

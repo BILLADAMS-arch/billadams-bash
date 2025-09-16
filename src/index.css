@@ -10,6 +10,7 @@ All colors MUST be HSL.
   :root {
     --background: 40 33% 98%; /* warm cream */
     --foreground: 220 15% 15%; /* deep slate text */
+    --heading: 210 60% 25%; /* dark navy blue */
 
     --card: 0 0% 100%;
     --card-foreground: 220 15% 15%;
@@ -58,6 +59,7 @@ All colors MUST be HSL.
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+    --heading: 210 40% 90%; /* lighter navy for dark mode */
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -102,5 +104,34 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Headings - dark navy in light mode, light navy in dark mode */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[hsl(var(--heading))] font-bold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl font-extrabold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  h5 {
+    @apply text-lg font-medium;
+  }
+
+  h6 {
+    @apply text-base font-medium uppercase tracking-wide;
   }
 }
