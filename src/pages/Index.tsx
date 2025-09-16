@@ -178,7 +178,6 @@ const Index = () => {
                   Dress Code
                 </h3>
                 <div className="space-y-3">
-                  <p className="font-semibold text-primary">Theme: Polo Bear by Ralph Lauren</p>
                   <p className="text-muted-foreground">Feel free to dress in smart casual attire:</p>
                   <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-muted rounded-full text-sm"> Navy Blue</span>

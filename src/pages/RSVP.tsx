@@ -79,9 +79,11 @@ const RSVP = () => {
               <CardTitle className="text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             
               </CardTitle>
-           <CardDescription className="text-lg font-bold text-[hsl(var(--heading))]">
-  Kindly RSVP by 19th September 2025 to confirm your attendance as we celebrate Jonathan’s 1st birthday.
-</CardDescription>
+          <div className="bg-gradient-to-r from-primary to-accent rounded-lg p-4 shadow-md">
+  <CardDescription className="text-lg font-bold text-white text-center">
+    Kindly RSVP by 19th September 2025 to confirm your attendance as we celebrate Jonathan’s 1st birthday.
+  </CardDescription>
+</div>
 
             </CardHeader>
             <CardContent>
