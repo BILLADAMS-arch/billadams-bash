@@ -27,9 +27,7 @@ import JJ13 from "@/assets/gallery/JJ13.jpeg";
 import JJ14 from "@/assets/gallery/JJ14.jpeg";
 import JJ15 from "@/assets/gallery/JJ15.jpeg";
 import JJ16 from "@/assets/gallery/JJ16.jpeg";
-import JJ17 from "@/assets/gallery/JJ17.jpeg";
 import JJ18 from "@/assets/gallery/JJ18.jpeg";
-import JJ19 from "@/assets/gallery/JJ19.jpeg";
 import JJ20 from "@/assets/gallery/JJ20.jpeg";
 import JJ21 from "@/assets/gallery/JJ21.jpeg";
 
@@ -52,9 +50,7 @@ const galleryImages = [
   { src: JJ14, alt: "Jonathan on 1 month" },
   { src: JJ15, alt: "Jonathan on 1 month" },
   { src: JJ16, alt: "Jonathan on 1 month" },
-  { src: JJ17, alt: "Jonathan on 1 month" },
   { src: JJ18, alt: "Jonathan on 1 month" },
-  { src: JJ19, alt: "Jonathan on 1 month" },
   { src: JJ20, alt: "Jonathan on 1 month" },
   { src: JJ21, alt: "Jonathan on 1 month" },
   
@@ -87,12 +83,14 @@ export default function PhotoGallery() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              J's Photo Gallery
-            </h2>
-            <p className="text-muted-foreground">
-              Precious moments from birth to now
-            </p>
+            <h2 className="text-4xl font-bold text-[hsl(var(--heading))] mb-4">
+  J's Photo Gallery
+</h2>
+
+            <p className="text-[hsl(var(--heading))] font-bold italic">
+  "One year of Jonathan"
+</p>
+
           </motion.div>
 
           {/* Mobile Carousel */}
