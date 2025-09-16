@@ -92,7 +92,7 @@ const RSVP = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="John Doe"
+                    placeholder="Jonathan"
                   />
                 </div>
 
@@ -103,7 +103,7 @@ const RSVP = () => {
                     required
                     value={formData.contact}
                     onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                    placeholder="john@example.com or +1234567890"
+                    placeholder="email or Phone number"
                   />
                 </div>
 
@@ -119,16 +119,11 @@ const RSVP = () => {
                         Yes, I'll be there! 🎉
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="not_attending" id="not_attending" />
-                      <Label htmlFor="not_attending" className="cursor-pointer">
-                        Sorry, can't make it
-                      </Label>
-                    </div>
+                    
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="maybe" id="maybe" />
                       <Label htmlFor="maybe" className="cursor-pointer">
-                        Not sure yet
+                        Sorry, can't make it
                       </Label>
                     </div>
                   </RadioGroup>
