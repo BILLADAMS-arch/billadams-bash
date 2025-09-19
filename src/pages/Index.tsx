@@ -73,7 +73,7 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">RSVP</h3>
                   <p className="text-muted-foreground mb-4">
-                    J can’t wait to celebrate with you! Please let us know if you’ll join the fun by 19th September 2025
+                    J can’t wait to celebrate with you! Please let us know if you’ll join the fun by 20th September 2025
                   </p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/rsvp">Respond Now →</Link>
