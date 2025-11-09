@@ -41,9 +41,9 @@ const Gifts = () => {
   };
 
   useEffect(() => {
-    fetchGifts();
     const guestId = localStorage.getItem("guestId");
     if (guestId) setSelectedGuestId(guestId);
+    fetchGifts();
   }, []);
 
   const fetchGifts = async () => {
@@ -54,6 +54,7 @@ const Gifts = () => {
         .order("price_estimate", { ascending: true });
 
       if (error) throw error;
+
       setGifts(data || []);
     } catch (error) {
       console.error("Error fetching gifts:", error);
@@ -86,7 +87,7 @@ const Gifts = () => {
 
       if (error) throw error;
 
-      // Update local state only to keep grid static
+      // Update local state
       setGifts((prevGifts) =>
         prevGifts.map((gift) =>
           gift.id === giftId
@@ -122,7 +123,6 @@ const Gifts = () => {
 
       if (error) throw error;
 
-      // Update local state only
       setGifts((prevGifts) =>
         prevGifts.map((gift) =>
           gift.id === giftId
@@ -169,10 +169,11 @@ const Gifts = () => {
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-8">
               {giftCategories.map((category) => {
-                const categoryGifts =
-                  category.id === "all"
-                    ? gifts
-                    : gifts.filter((g) => getGiftCategory(g.name) === category.id);
+                const categoryGifts = (category.id === "all"
+                  ? gifts
+                  : gifts.filter((g) => getGiftCategory(g.name) === category.id)
+                ).filter((g) => !g.is_reserved || g.reserved_by === selectedGuestId); // <-- FILTER FIX
+
                 const availableCount = categoryGifts.filter((g) => !g.is_reserved).length;
 
                 return (
@@ -188,10 +189,10 @@ const Gifts = () => {
             </TabsList>
 
             {giftCategories.map((category) => {
-              const categoryGifts =
-                category.id === "all"
-                  ? gifts
-                  : gifts.filter((g) => getGiftCategory(g.name) === category.id);
+              const categoryGifts = (category.id === "all"
+                ? gifts
+                : gifts.filter((g) => getGiftCategory(g.name) === category.id)
+              ).filter((g) => !g.is_reserved || g.reserved_by === selectedGuestId); // <-- FILTER FIX
 
               return (
                 <TabsContent key={category.id} value={category.id}>
