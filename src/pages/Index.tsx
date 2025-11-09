@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Gift, Heart, Calendar, PartyPopper, MapPin, Clock } from "lucide-react";
+import { Calendar, PartyPopper, Clock, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PhotoGallery from "@/components/PhotoGallery";
@@ -25,7 +25,7 @@ const Index = () => {
             className="mb-4"
           >
             <div className="inline-flex items-center gap-1 bg-blue-900 px-3 py-1.5 rounded-full mb-2 text-xs sm:text-sm font-bold text-white shadow-sm">
-              Graduation: Nov 14 | Birthday Bash: Nov 15
+              Graduation Ceremony: November 14, 2025 | Birthday Bash: November 15, 2025
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-bold text-[hsl(var(--heading))] mb-2">
@@ -47,62 +47,55 @@ const Index = () => {
           </motion.div>
         </section>
 
-        {/* Features Section (Single Row Cards) */}
+        {/* RSVP + Event Details Row */}
         <section className="mb-6 overflow-x-auto">
-          <div className="flex gap-3 min-w-max">
-            {/* RSVP */}
-            <Card className="p-3 w-48 flex-shrink-0 hover:shadow-xl transition-all border-primary/20 bg-card/70 backdrop-blur-sm">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mb-2">
-                <Calendar className="w-4 h-4 text-primary-foreground" />
+          <div className="flex gap-4 justify-center flex-wrap">
+            {/* RSVP Card */}
+            <Card className="p-4 w-64 flex-shrink-0 hover:shadow-xl transition-all border-primary/20 bg-card/70 backdrop-blur-sm text-sm">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mb-3">
+                <Calendar className="w-5 h-5 text-primary-foreground" />
               </div>
-              <h3 className="text-sm font-semibold mb-1">RSVP</h3>
-              <p className="text-xs text-muted-foreground mb-1">
-                Celebrate Graduation & Birthday. Your presence matters!
+              <h3 className="text-base font-semibold mb-2 text-center">RSVP</h3>
+              <p className="text-sm text-muted-foreground mb-3 text-center">
+                Join me in commemorating this special journey as I transition into a new chapter. Your presence and support mean the world to me!
               </p>
-              <Button variant="link" className="p-0 text-xs" asChild>
+              <Button variant="link" className="p-0 text-sm w-full text-center" asChild>
                 <Link to="/rsvp">Respond Now →</Link>
               </Button>
             </Card>
 
-       
+            {/* Event Details Card */}
+            <Card className="p-4 w-64 flex-shrink-0 border-primary/20 bg-card/70 backdrop-blur-sm text-sm">
+              <div className="text-center mb-3">
+                <PartyPopper className="w-10 h-10 text-primary mx-auto mb-1" />
+                <h2 className="text-base font-semibold text-[hsl(var(--heading))]">Event Details</h2>
+              </div>
+              <div className="space-y-2">
+                <p className="flex items-center gap-1 text-sm">
+                  <Calendar className="w-4 h-4 text-primary" />
+                  <span><span className="font-semibold">Date:</span> Fri, Nov 14, 2025</span>
+                </p>
+                <p className="flex items-center gap-1 text-sm">
+                  <Clock className="w-4 h-4 text-primary" />
+                  <span><span className="font-semibold">Time:</span> 9:00AM - 1:00PM</span>
+                </p>
+                <p className="flex items-center gap-1 text-sm">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span>
+                    <span className="font-semibold">Venue:</span>{" "}
+                    <a
+                      href="https://maps.app.goo.gl/hj9t6Ah2ZooddgU76?g_st=ipc"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-accent"
+                    >
+                      A.S.K Dome
+                    </a>
+                  </span>
+                </p>
+              </div>
+            </Card>
           </div>
-        </section>
-
-        {/* Event Details */}
-        <section className="mb-6">
-          <div className="text-center mb-2">
-            <PartyPopper className="w-8 h-8 text-primary mx-auto mb-1" />
-            <h2 className="text-lg font-bold text-[hsl(var(--heading))]">Event Details</h2>
-          </div>
-
-          <Card className="p-3 border-primary/20 bg-card/70 backdrop-blur-sm text-xs">
-            <h3 className="font-semibold mb-1 flex items-center gap-1">
-              <Calendar className="w-4 h-4 text-primary" />
-              When & Where
-            </h3>
-            <p className="flex items-start gap-1">
-              <Calendar className="w-3 h-3 text-muted-foreground mt-0.5" />
-              <span><span className="font-semibold">Date:</span> Fri, Nov 14, 2025</span>
-            </p>
-            <p className="flex items-start gap-1">
-              <Clock className="w-3 h-3 text-muted-foreground mt-0.5" />
-              <span><span className="font-semibold">Time:</span> 9:00AM - 1:00PM</span>
-            </p>
-            <p className="flex items-start gap-1">
-              <MapPin className="w-3 h-3 text-muted-foreground mt-0.5" />
-              <span>
-                <span className="font-semibold">Venue:</span>{" "}
-                <a
-                  href="https://maps.app.goo.gl/hj9t6Ah2ZooddgU76?g_st=ipc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline hover:text-accent"
-                >
-                  A.S.K Dome
-                </a>
-              </span>
-            </p>
-          </Card>
         </section>
 
         {/* Photo Gallery */}
