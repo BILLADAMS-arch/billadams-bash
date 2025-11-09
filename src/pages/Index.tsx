@@ -43,12 +43,6 @@ const Index = () => {
                   RSVP Now
                 </Link>
               </Button>
-              <Button size="sm" variant="outline" className="border-2" asChild>
-                <Link to="/gifts">
-                  <Gift className="mr-1 h-4 w-4" />
-                  View Wishlist
-                </Link>
-              </Button>
             </div>
           </motion.div>
         </section>
