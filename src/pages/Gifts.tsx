@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, Gift, Shirt, Laptop, Brain, DollarSign, ExternalLink, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Gift, Shirt, Laptop, Brain, DollarSign, ExternalLink, ShoppingCart, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WorkflowSteps } from "@/components/WorkflowSteps";
@@ -27,7 +27,13 @@ const Gifts = () => {
   const getGiftCategory = (giftName: string): string => {
     const name = giftName.toLowerCase();
     if (name.includes("money")) return "money";
-    if (name.includes("sneaker") || name.includes("wear") || name.includes("hoodie") || name.includes("bag") || name.includes("cologne"))
+    if (
+      name.includes("sneaker") ||
+      name.includes("wear") ||
+      name.includes("hoodie") ||
+      name.includes("bag") ||
+      name.includes("cologne")
+    )
       return "fashion";
     if (name.includes("laptop") || name.includes("tablet") || name.includes("phone")) return "tech";
     if (name.includes("getaway") || name.includes("course") || name.includes("seat")) return "experience";
@@ -44,7 +50,7 @@ const Gifts = () => {
     try {
       const { data, error } = await supabase
         .from("gifts")
-        .select("*, guests:reserved_by(name)")
+        .select("*")
         .order("price_estimate", { ascending: true });
 
       if (error) throw error;
@@ -56,6 +62,7 @@ const Gifts = () => {
     }
   };
 
+  // Reserve a gift
   const handleReserve = async (giftId: string) => {
     if (!selectedGuestId) {
       toast({
@@ -63,9 +70,7 @@ const Gifts = () => {
         description: "Please RSVP first to reserve a gift.",
         variant: "destructive",
       });
-      setTimeout(() => {
-        window.location.href = "/rsvp";
-      }, 2000);
+      setTimeout(() => navigate("/rsvp"), 2000);
       return;
     }
 
@@ -81,17 +86,59 @@ const Gifts = () => {
 
       if (error) throw error;
 
+      // Update local state only to keep grid static
+      setGifts((prevGifts) =>
+        prevGifts.map((gift) =>
+          gift.id === giftId
+            ? { ...gift, is_reserved: true, reserved_by: selectedGuestId }
+            : gift
+        )
+      );
+
       toast({
         title: "Gift Reserved!",
-        description: "Thank you for reserving this gift.",
+        description: "You can cancel or change your reservation anytime.",
       });
-
-      fetchGifts();
-      setTimeout(() => navigate("/guestbook"), 2000);
     } catch (error: any) {
       toast({
         title: "Error",
         description: error.message || "Failed to reserve gift",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Unreserve a gift
+  const handleUnreserve = async (giftId: string) => {
+    try {
+      const { error } = await supabase
+        .from("gifts")
+        .update({
+          is_reserved: false,
+          reserved_by: null,
+          reserved_at: null,
+        })
+        .eq("id", giftId);
+
+      if (error) throw error;
+
+      // Update local state only
+      setGifts((prevGifts) =>
+        prevGifts.map((gift) =>
+          gift.id === giftId
+            ? { ...gift, is_reserved: false, reserved_by: null }
+            : gift
+        )
+      );
+
+      toast({
+        title: "Reservation Cancelled",
+        description: "You can now reserve another gift.",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to cancel reservation",
         variant: "destructive",
       });
     }
@@ -110,9 +157,7 @@ const Gifts = () => {
         <WorkflowSteps currentStep="gifts" />
 
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[hsl(var(--heading))] mb-2">
-            Bill’s Wish List
-          </h1>
+          <h1 className="text-4xl font-bold text-[hsl(var(--heading))] mb-2">Bill’s Wish List</h1>
           <p className="text-lg text-[hsl(var(--heading))]">
             Your presence is a present — but if you’d like to give something, here are a few thoughtful ideas.
           </p>
@@ -124,7 +169,6 @@ const Gifts = () => {
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-8">
               {giftCategories.map((category) => {
-                const Icon = category.icon;
                 const categoryGifts =
                   category.id === "all"
                     ? gifts
@@ -133,7 +177,7 @@ const Gifts = () => {
 
                 return (
                   <TabsTrigger key={category.id} value={category.id} className="flex flex-col gap-1 h-auto py-2">
-                    <Icon className="w-4 h-4" />
+                    <category.icon className="w-4 h-4" />
                     <span className="text-xs">{category.name}</span>
                     <Badge variant="secondary" className="text-xs px-1 py-0">
                       {availableCount}
@@ -152,47 +196,86 @@ const Gifts = () => {
               return (
                 <TabsContent key={category.id} value={category.id}>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {categoryGifts.map((gift) => (
-                      <Card key={gift.id} className={`hover:shadow-xl transition-all ${gift.is_reserved ? "opacity-75" : ""}`}>
-                        {gift.image_url && (
-                          <img src={gift.image_url} alt={gift.name} className="w-full h-48 object-cover rounded-t-lg" />
-                        )}
-                        <CardHeader className="card-header">
-                          <CardTitle className="flex items-center justify-between">
-                            <span className="text-base">{gift.name}</span>
-                            {gift.is_reserved && <Badge variant="secondary">Reserved</Badge>}
-                          </CardTitle>
-                          {gift.price_estimate && (
-                            <CardDescription className="text-lg font-semibold text-primary">
-                              ${gift.price_estimate}
-                            </CardDescription>
-                          )}
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <p className="text-sm text-muted-foreground">{gift.description}</p>
+                    {categoryGifts.map((gift) => {
+                      const isMine = gift.reserved_by === selectedGuestId;
+                      const isReservedByOther = gift.is_reserved && !isMine;
 
-                          <div className="flex gap-2">
-                            {!gift.is_reserved && (
-                              <Button
-                                onClick={() => handleReserve(gift.id)}
-                                className="flex-1 bg-[hsl(var(--primary))] hover:opacity-90 text-white"
-                                size="sm"
-                              >
-                                <ShoppingCart className="mr-2 h-4 w-4" />
-                                Reserve
-                              </Button>
+                      return (
+                        <Card
+                          key={gift.id}
+                          className={`transition-all hover:shadow-xl ${
+                            isMine
+                              ? "border-2 border-green-500 bg-green-50"
+                              : isReservedByOther
+                              ? "opacity-50"
+                              : ""
+                          }`}
+                        >
+                          {gift.image_url && (
+                            <img
+                              src={gift.image_url}
+                              alt={gift.name}
+                              className="w-full h-48 object-cover rounded-t-lg"
+                            />
+                          )}
+                          <CardHeader className="card-header">
+                            <CardTitle className="flex items-center justify-between">
+                              <span className="text-base">{gift.name}</span>
+                              {gift.is_reserved && (
+                                <Badge variant="secondary">
+                                  {isMine ? "Your Reservation" : "Reserved"}
+                                </Badge>
+                              )}
+                            </CardTitle>
+                            {gift.price_estimate && (
+                              <CardDescription className="text-lg font-semibold text-primary">
+                                ${gift.price_estimate}
+                              </CardDescription>
                             )}
-                            {gift.link && (
-                              <Button variant="outline" size="icon" asChild>
-                                <a href={gift.link} target="_blank" rel="noopener noreferrer" title="View in store">
-                                  <ExternalLink className="h-4 w-4" />
-                                </a>
-                              </Button>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                          </CardHeader>
+                          <CardContent className="space-y-4">
+                            <p className="text-sm text-muted-foreground">{gift.description}</p>
+
+                            <div className="flex gap-2">
+                              {isMine && (
+                                <Button
+                                  onClick={() => handleUnreserve(gift.id)}
+                                  className="flex-1 bg-red-500 hover:bg-red-600 text-white"
+                                  size="sm"
+                                >
+                                  <X className="mr-2 h-4 w-4" />
+                                  Cancel
+                                </Button>
+                              )}
+
+                              {!gift.is_reserved && !isMine && (
+                                <Button
+                                  onClick={() => handleReserve(gift.id)}
+                                  className="flex-1 bg-[hsl(var(--primary))] hover:opacity-90 text-white"
+                                  size="sm"
+                                >
+                                  <ShoppingCart className="mr-2 h-4 w-4" />
+                                  Reserve
+                                </Button>
+                              )}
+
+                              {gift.link && (
+                                <Button variant="outline" size="icon" asChild>
+                                  <a
+                                    href={gift.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="View in store"
+                                  >
+                                    <ExternalLink className="h-4 w-4" />
+                                  </a>
+                                </Button>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
                   </div>
                 </TabsContent>
               );
