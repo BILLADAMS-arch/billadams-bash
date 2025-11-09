@@ -146,7 +146,7 @@ Join us in commemorating this special journey as we transition into a new chapte
                   <p className="flex items-start gap-2">
                     <Clock className="w-4 h-4 text-muted-foreground mt-1" />
                     <span>
-                      <span className="font-semibold">Time:</span> 1:00 PM
+                      <span className="font-semibold">Time:</span> 9:00AM - 1:00 PM
                     </span>
                   </p>
                  <p className="flex items-start gap-2">
@@ -159,7 +159,7 @@ Join us in commemorating this special journey as we transition into a new chapte
       rel="noopener noreferrer"
       className="text-primary underline hover:text-accent transition-colors"
     >
-      Westwood Hotel, Eldama Ravine Rd, Nairobi
+      A.S.K Dome
     </a>
   </span>
 </p>
