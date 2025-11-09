@@ -8,7 +8,7 @@ interface WorkflowStepsProps {
 export const WorkflowSteps = ({ currentStep }: WorkflowStepsProps) => {
   const steps = [
     { id: "rsvp", label: "RSVP", description: "Confirm attendance" },
-    { id: "gifts", label: "J's Wish List", description: "Reserve a gift" },
+    { id: "gifts", label: "Bill's Wish List", description: "Reserve a gift" },
     { id: "guestbook", label: "Guestbook", description: "Leave a message" },
   ];
 

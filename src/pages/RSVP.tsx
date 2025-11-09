@@ -14,6 +14,7 @@ import { WorkflowSteps } from "@/components/WorkflowSteps";
 const RSVP = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -22,20 +23,40 @@ const RSVP = () => {
     children_count: 0,
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
+    // Validate required fields
+    if (!formData.name || !formData.contact) {
+      toast({
+        title: "Missing info",
+        description: "Please fill out all required fields.",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
     try {
+      // Insert guest into Supabase (no event_id)
       const { data, error } = await supabase
         .from("guests")
-        .insert([formData])
+        .insert([
+          {
+            name: formData.name,
+            contact: formData.contact,
+            rsvp_status: formData.rsvp_status,
+            adults_count: formData.adults_count,
+            children_count: formData.children_count,
+          },
+        ])
         .select()
         .single();
 
       if (error) throw error;
 
-      // Store guest ID for gift reservation and guestbook
+      // Store guest ID for other pages (gift reservation, guestbook, etc.)
       if (data) {
         localStorage.setItem("guestId", data.id);
       }
@@ -46,10 +67,11 @@ const RSVP = () => {
       });
 
       navigate("/gifts");
-    } catch (error: any) {
+    } catch (error) {
+      console.error("RSVP ERROR:", error);
       toast({
         title: "Error",
-        description: error.message || "Failed to submit RSVP",
+        description: error.message || "Failed to submit RSVP.",
         variant: "destructive",
       });
     } finally {
@@ -77,17 +99,18 @@ const RSVP = () => {
           <Card className="shadow-xl border-primary/20">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            
+                RSVP Form
               </CardTitle>
-          <div className="bg-gradient-to-r from-primary to-accent rounded-lg p-4 shadow-md">
-  <CardDescription className="text-lg font-bold text-white text-center">
-    Kindly RSVP by 29th September 2025 to confirm your attendance as we celebrate Jonathan’s 1st birthday.
-  </CardDescription>
-</div>
-
+              <div className="bg-gradient-to-r from-primary to-accent rounded-lg p-4 shadow-md mt-2">
+                <CardDescription className="text-lg font-bold text-white text-center">
+                  Kindly RSVP
+                </CardDescription>
+              </div>
             </CardHeader>
+
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name */}
                 <div className="space-y-2">
                   <Label htmlFor="name">Your Name</Label>
                   <Input
@@ -99,6 +122,7 @@ const RSVP = () => {
                   />
                 </div>
 
+                {/* Contact */}
                 <div className="space-y-2">
                   <Label htmlFor="contact">Email or Phone</Label>
                   <Input
@@ -110,6 +134,7 @@ const RSVP = () => {
                   />
                 </div>
 
+                {/* RSVP Status */}
                 <div className="space-y-3">
                   <Label>Will you be attending?</Label>
                   <RadioGroup
@@ -122,16 +147,17 @@ const RSVP = () => {
                         Yes, I'll be there! 🎉
                       </Label>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="maybe" id="maybe" />
-                      <Label htmlFor="maybe" className="cursor-pointer">
+                      <RadioGroupItem value="not_attending" id="not_attending" />
+                      <Label htmlFor="not_attending" className="cursor-pointer">
                         Sorry, can't make it
                       </Label>
                     </div>
                   </RadioGroup>
                 </div>
 
+                {/* Number of Guests */}
                 {formData.rsvp_status !== "not_attending" && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
@@ -174,6 +200,7 @@ const RSVP = () => {
                   </motion.div>
                 )}
 
+                {/* Submit Button */}
                 <Button
                   type="submit"
                   disabled={loading}

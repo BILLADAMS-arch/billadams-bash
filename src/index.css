@@ -2,30 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* ================================
+   DESIGN SYSTEM - COLORS, FONTS, ETC.
+   ================================ */
 @layer base {
   :root {
-    --background: 40 33% 98%; /* warm cream */
-    --foreground: 220 15% 15%; /* deep slate text */
-    --heading: 210 60% 25%; /* dark navy blue */
+    /* Base colors */
+    --background: 40 33% 98%; /* warm cream background */
+    --foreground: 220 25% 20%; /* dark navy blue for general text */
+    --heading: 220 60% 20%; /* deep navy blue for headings */
 
+    /* Cards & surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 15%;
+    --card-foreground: 220 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 15%;
+    --popover-foreground: 220 25% 20%;
 
-    --primary: 210 60% 45%; /* navy blue */
+    /* Golden orange primary (buttons, highlights, card headers) */
+    --primary: 35 90% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 60% 75%; /* soft powder blue */
-    --secondary-foreground: 220 15% 15%;
+    /* Accent tone (slightly softer golden hue for links, hovers, etc.) */
+    --accent: 35 80% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --accent: 90 40% 65%; /* sage green */
-    --accent-foreground: 220 20% 15%;
+    /* Supporting colors */
+    --secondary: 200 60% 75%; /* soft powder blue */
+    --secondary-foreground: 220 25% 20%;
 
     --muted: 40 20% 94%; /* light beige */
     --muted-foreground: 220 10% 40%;
@@ -33,80 +37,87 @@ All colors MUST be HSL.
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
+    /* Borders and inputs */
     --border: 220 15% 85%;
     --input: 220 15% 85%;
-    --ring: 210 60% 45%;
+    --ring: 35 90% 55%; /* golden orange ring */
 
     --radius: 0.75rem;
 
+    /* Sidebar (if used) */
     --sidebar-background: 40 33% 98%;
-    --sidebar-foreground: 220 15% 15%;
-    --sidebar-primary: 210 60% 45%;
+    --sidebar-foreground: 220 25% 20%;
+    --sidebar-primary: 35 90% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 200 60% 75%;
-    --sidebar-accent-foreground: 220 15% 15%;
+    --sidebar-accent-foreground: 220 25% 20%;
     --sidebar-border: 220 15% 85%;
-    --sidebar-ring: 210 60% 45%;
+    --sidebar-ring: 35 90% 55%;
 
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(200 60% 75%), hsl(210 60% 45%));
-    --gradient-secondary: linear-gradient(135deg, hsl(90 40% 65%), hsl(40 33% 98%));
-    --gradient-festive: linear-gradient(135deg, hsl(200 60% 75%), hsl(90 40% 65%), hsl(40 33% 98%));
-    --shadow-soft: 0 4px 20px -2px hsl(210 60% 45% / 0.1);
-    --shadow-glow: 0 0 30px hsl(200 60% 75% / 0.3);
+    --gradient-primary: linear-gradient(135deg, hsl(35 90% 55%), hsl(220 60% 20%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220 60% 20%), hsl(35 90% 55%));
+    --shadow-soft: 0 4px 20px -2px hsl(35 90% 55% / 0.15);
+    --shadow-glow: 0 0 30px hsl(35 90% 55% / 0.25);
   }
 
+  /* ================================
+     DARK MODE
+     ================================ */
   .dark {
     --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --heading: 210 40% 90%; /* lighter navy for dark mode */
+    --foreground: 35 100% 90%; /* soft golden text in dark mode */
+    --heading: 35 95% 70%; /* bright golden headings */
 
     --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: 35 100% 90%;
 
     --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: 35 100% 90%;
 
-    --primary: 210 40% 90%; /* lighter navy */
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 35 95% 60%; /* glowing golden orange */
+    --primary-foreground: 222.2 84% 4.9%;
 
-    --secondary: 200 40% 30%; /* muted powder blue */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 200 40% 30%;
+    --secondary-foreground: 35 100% 90%;
+
+    --accent: 35 95% 60%;
+    --accent-foreground: 222.2 84% 4.9%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 90 30% 35%; /* darker sage */
-    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 35 95% 60%;
 
     --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 210 40% 90%;
+    --sidebar-foreground: 35 95% 70%;
+    --sidebar-primary: 35 95% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 200 40% 30%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 35 95% 60%;
   }
 }
 
+/* ================================
+   TYPOGRAPHY & ELEMENT STYLING
+   ================================ */
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-[hsl(var(--foreground))];
   }
 
-  /* Headings - dark navy in light mode, light navy in dark mode */
+  /* Headings: navy for light mode, golden for dark */
   h1, h2, h3, h4, h5, h6 {
     @apply text-[hsl(var(--heading))] font-bold;
   }
@@ -133,5 +144,16 @@ All colors MUST be HSL.
 
   h6 {
     @apply text-base font-medium uppercase tracking-wide;
+  }
+
+  /* Buttons use golden orange */
+  button,
+  .btn-primary {
+    @apply bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:opacity-90 transition-all duration-200 shadow-md;
+  }
+
+  /* Card header styling */
+  .card-header {
+    @apply bg-[hsl(var(--primary))]/10 border-b border-[hsl(var(--primary))]/30 rounded-t-lg text-[hsl(var(--heading))];
   }
 }

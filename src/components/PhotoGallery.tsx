@@ -84,13 +84,8 @@ export default function PhotoGallery() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-[hsl(var(--heading))] mb-4">
-  J's Photo Gallery
+  Bill's Photo Gallery
 </h2>
-
-  <p className="text-yellow-700 font-bold italic">
-  "One year of Jonathan"
-</p>
-
 
           </motion.div>
 

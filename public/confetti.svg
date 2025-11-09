@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
-  <circle cx="8" cy="8" r="2" fill="hsl(280 85% 60%)" opacity="0.6"/>
-  <circle cx="25" cy="12" r="2" fill="hsl(45 100% 60%)" opacity="0.5"/>
-  <circle cx="15" cy="30" r="2" fill="hsl(340 82% 52%)" opacity="0.6"/>
-  <circle cx="32" cy="28" r="2" fill="hsl(30 100% 50%)" opacity="0.4"/>
-</svg>

@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, Gift, ShoppingCart, ExternalLink, Bike, Brain, Palette, Baby, Home, Trees, Shield, Moon } from "lucide-react";
+import { ArrowLeft, Gift, Shirt, Laptop, Brain, DollarSign, ExternalLink, ShoppingCart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WorkflowSteps } from "@/components/WorkflowSteps";
@@ -17,34 +17,25 @@ const Gifts = () => {
 
   // Gift categories
   const giftCategories = [
-    { id: 'all', name: 'All Gifts', icon: Gift },
-    { id: 'ride-on', name: 'Ride-Ons', icon: Bike },
-    { id: 'learning', name: 'Learning', icon: Brain },
-    { id: 'creative', name: 'Creative', icon: Palette },
-    { id: 'feeding', name: 'Feeding', icon: Baby },
-    { id: 'comfort', name: 'Comfort', icon: Home },
-    { id: 'outdoor', name: 'Outdoor', icon: Trees },
-    { id: 'safety', name: 'Safety', icon: Shield },
-    { id: 'sleep', name: 'Sleep', icon: Moon }
+    { id: "all", name: "All Gifts", icon: Gift },
+    { id: "money", name: "Money Gifts", icon: DollarSign },
+    { id: "fashion", name: "Fashion & Style", icon: Shirt },
+    { id: "tech", name: "Tech & Gadgets", icon: Laptop },
+    { id: "experience", name: "Experiences & Development", icon: Brain },
   ];
 
   const getGiftCategory = (giftName: string): string => {
     const name = giftName.toLowerCase();
-    if (name.includes('tricycle') || name.includes('bicycle') || name.includes('scooter') || name.includes('ride')) return 'ride-on';
-    if (name.includes('puzzle') || name.includes('blocks') || name.includes('activity') || name.includes('montessori') || name.includes('stacking') || name.includes('sorter')) return 'learning';
-    if (name.includes('crayon') || name.includes('paint') || name.includes('playdough') || name.includes('book') || name.includes('musical') || name.includes('train')) return 'creative';
-    if (name.includes('bath')) return 'creative';
-    if (name.includes('plate') || name.includes('bowl') || name.includes('cup') || name.includes('bib')) return 'feeding';
-    if (name.includes('shoe') || name.includes('jacket') || name.includes('pajama') || name.includes('pillow') || name.includes('blanket')) return 'comfort';
-    if (name.includes('swing') || name.includes('tent') || name.includes('ball')) return 'outdoor';
-    if (name.includes('helmet') || name.includes('proof')) return 'safety';
-    if (name.includes('night') || name.includes('lullaby') || name.includes('sleep') || name.includes('bedtime')) return 'sleep';
-    return 'all';
+    if (name.includes("money")) return "money";
+    if (name.includes("sneaker") || name.includes("wear") || name.includes("hoodie") || name.includes("bag") || name.includes("cologne"))
+      return "fashion";
+    if (name.includes("laptop") || name.includes("tablet") || name.includes("phone")) return "tech";
+    if (name.includes("getaway") || name.includes("course") || name.includes("seat")) return "experience";
+    return "all";
   };
 
   useEffect(() => {
     fetchGifts();
-    // Check if we have a guest ID from RSVP
     const guestId = localStorage.getItem("guestId");
     if (guestId) setSelectedGuestId(guestId);
   }, []);
@@ -81,10 +72,10 @@ const Gifts = () => {
     try {
       const { error } = await supabase
         .from("gifts")
-        .update({ 
-          is_reserved: true, 
+        .update({
+          is_reserved: true,
           reserved_by: selectedGuestId,
-          reserved_at: new Date().toISOString()
+          reserved_at: new Date().toISOString(),
         })
         .eq("id", giftId);
 
@@ -92,15 +83,11 @@ const Gifts = () => {
 
       toast({
         title: "Gift Reserved!",
-        description: "Thank you for reserving this gift. You can now leave a message in the guestbook.",
+        description: "Thank you for reserving this gift.",
       });
 
       fetchGifts();
-      
-      // Navigate to guestbook after short delay
-     setTimeout(() => {
-  navigate("/guestbook");
-}, 2000);
+      setTimeout(() => navigate("/guestbook"), 2000);
     } catch (error: any) {
       toast({
         title: "Error",
@@ -122,34 +109,30 @@ const Gifts = () => {
 
         <WorkflowSteps currentStep="gifts" />
 
-<div className="text-center mb-8">
-  <h1 className="text-4xl font-bold text-[hsl(var(--heading))] mb-2">
-    J’s Wish List
-  </h1>
-  <p className="text-lg text-[hsl(var(--heading))]">
-    Your presence is a present, however, if you would like to gift J, here are a few ideas.
-  </p>
-</div>
-
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-[hsl(var(--heading))] mb-2">
+            Bill’s Wish List
+          </h1>
+          <p className="text-lg text-[hsl(var(--heading))]">
+            Your presence is a present — but if you’d like to give something, here are a few thoughtful ideas.
+          </p>
+        </div>
 
         {loading ? (
           <div className="text-center py-12">Loading gifts...</div>
         ) : (
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 mb-8">
+            <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-8">
               {giftCategories.map((category) => {
                 const Icon = category.icon;
-                const categoryGifts = category.id === 'all' 
-                  ? gifts 
-                  : gifts.filter(g => getGiftCategory(g.name) === category.id);
-                const availableCount = categoryGifts.filter(g => !g.is_reserved).length;
-                
+                const categoryGifts =
+                  category.id === "all"
+                    ? gifts
+                    : gifts.filter((g) => getGiftCategory(g.name) === category.id);
+                const availableCount = categoryGifts.filter((g) => !g.is_reserved).length;
+
                 return (
-                  <TabsTrigger 
-                    key={category.id} 
-                    value={category.id}
-                    className="flex flex-col gap-1 h-auto py-2"
-                  >
+                  <TabsTrigger key={category.id} value={category.id} className="flex flex-col gap-1 h-auto py-2">
                     <Icon className="w-4 h-4" />
                     <span className="text-xs">{category.name}</span>
                     <Badge variant="secondary" className="text-xs px-1 py-0">
@@ -161,28 +144,23 @@ const Gifts = () => {
             </TabsList>
 
             {giftCategories.map((category) => {
-              const categoryGifts = category.id === 'all' 
-                ? gifts 
-                : gifts.filter(g => getGiftCategory(g.name) === category.id);
-              
+              const categoryGifts =
+                category.id === "all"
+                  ? gifts
+                  : gifts.filter((g) => getGiftCategory(g.name) === category.id);
+
               return (
                 <TabsContent key={category.id} value={category.id}>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {categoryGifts.map((gift) => (
-                      <Card key={gift.id} className={`hover:shadow-xl transition-all ${gift.is_reserved ? 'opacity-75' : ''}`}>
+                      <Card key={gift.id} className={`hover:shadow-xl transition-all ${gift.is_reserved ? "opacity-75" : ""}`}>
                         {gift.image_url && (
-                          <img 
-                            src={gift.image_url} 
-                            alt={gift.name}
-                            className="w-full h-48 object-cover rounded-t-lg"
-                          />
+                          <img src={gift.image_url} alt={gift.name} className="w-full h-48 object-cover rounded-t-lg" />
                         )}
-                        <CardHeader>
+                        <CardHeader className="card-header">
                           <CardTitle className="flex items-center justify-between">
                             <span className="text-base">{gift.name}</span>
-                            {gift.is_reserved && (
-                              <Badge variant="secondary">Reserved</Badge>
-                            )}
+                            {gift.is_reserved && <Badge variant="secondary">Reserved</Badge>}
                           </CardTitle>
                           {gift.price_estimate && (
                             <CardDescription className="text-lg font-semibold text-primary">
@@ -192,12 +170,12 @@ const Gifts = () => {
                         </CardHeader>
                         <CardContent className="space-y-4">
                           <p className="text-sm text-muted-foreground">{gift.description}</p>
-                          
+
                           <div className="flex gap-2">
                             {!gift.is_reserved && (
-                              <Button 
+                              <Button
                                 onClick={() => handleReserve(gift.id)}
-                                className="flex-1 bg-gradient-to-r from-secondary to-accent"
+                                className="flex-1 bg-[hsl(var(--primary))] hover:opacity-90 text-white"
                                 size="sm"
                               >
                                 <ShoppingCart className="mr-2 h-4 w-4" />
@@ -227,9 +205,7 @@ const Gifts = () => {
             Reserve a gift above or proceed to leave a birthday message
           </p>
           <Button size="lg" asChild>
-            <Link to="/guestbook">
-              Continue to Guestbook →
-            </Link>
+            <Link to="/guestbook">Continue to Guestbook →</Link>
           </Button>
         </div>
       </div>

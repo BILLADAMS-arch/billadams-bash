@@ -27,13 +27,12 @@ const Index = () => {
               className="mb-8"
             >
               <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">You're Invited!</span>
+                <span className="text-sm font-medium text-primary">Graduation Ceremony: November 14, 2025 | Birthday Bash: November 15, 2025</span>
               </div>
 
               {/* Updated to dark navy heading color */}
               <h1 className="text-6xl md:text-8xl font-bold text-[hsl(var(--heading))] mb-4">
-                J’s 𝒪𝒩𝐸derful Polo Bear Bash🐻🏇✨
+                Welcome to the BILL ADAMS' World🎓🎉
               </h1>
           
               <div className="flex flex-wrap justify-center gap-4">
@@ -50,7 +49,7 @@ const Index = () => {
                 <Button size="lg" variant="outline" className="border-2" asChild>
                   <Link to="/gifts">
                     <Gift className="mr-2 h-5 w-5" />
-                    View J's Wishlist
+                    View Bill Adams' Wishlist
                   </Link>
                 </Button>
               </div>
@@ -73,7 +72,9 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">RSVP</h3>
                   <p className="text-muted-foreground mb-4">
-                    J can’t wait to celebrate with you! Please let us know if you’ll join the fun by 29th September 2025
+                    Celebrating a Graduation Milestone & Birthday
+
+Join us in commemorating this special journey as we transition into a new chapter. Your presence and support mean the world to us!
                   </p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/rsvp">Respond Now →</Link>
@@ -90,8 +91,8 @@ const Index = () => {
                   <div className="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4">
                     <Gift className="w-6 h-6 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">J's Wish List</h3>
-                  <p className="text-muted-foreground mb-4">Browse and reserve gifts from J&apos;s wishlist</p>
+                  <h3 className="text-xl font-semibold mb-2">Bill Adams' Wish List</h3>
+                  <p className="text-muted-foreground mb-4">Browse and reserve gifts from Bill&apos;s wishlist</p>
                   <Button variant="link" className="p-0" asChild>
                     <Link to="/gifts">View Wish List →</Link>
                   </Button>
@@ -136,7 +137,7 @@ const Index = () => {
                   <p className="flex items-start gap-2">
                     <Calendar className="w-4 h-4 text-muted-foreground mt-1" />
                     <span>
-                      <span className="font-semibold">Date:</span> Saturday, 4th October 2025
+                      <span className="font-semibold">Date:</span> Friday, 14th November 2025
                     </span>
                   </p>
                   <p className="flex items-start gap-2">
@@ -159,58 +160,10 @@ const Index = () => {
     </a>
   </span>
 </p>
-
-                  <p className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-muted-foreground mt-1" />
-                    <span>
-                      <span className="font-semibold">
-                        HOST NOTE: There are limited parking spaces, you&apos;re requested to make alternative
-                        arrangements for parking or use taxi
-                      </span>
-                    </span>
-                  </p>
                 </div>
               </Card>
-
-              <Card className="p-6 border-secondary/20 bg-card/70 backdrop-blur-sm">
-                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2 text-[hsl(var(--heading))]">
-                  <Shirt className="w-5 h-5 text-secondary" />
-                  Dress Code
-                </h3>
-                <div className="space-y-3">
-                  <p className="text-muted-foreground">Feel free to dress in smart casual attire:</p>
-                  <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-muted rounded-full text-sm"> Navy Blue</span>
-<span className="px-3 py-1 bg-muted rounded-full text-sm"> White</span>
-<span className="px-3 py-1 bg-muted rounded-full text-sm"> Beige</span>
-<span className="px-3 py-1 bg-muted rounded-full text-sm"> Preppy Chic</span>
-<span className="px-3 py-1 bg-muted rounded-full text-sm"> Black</span>
-<span className="px-3 py-1 bg-muted rounded-full text-sm"> Denim</span>
-<span className="px-3 py-1 bg-muted rounded-full text-sm"> Striped Polo Attire</span>
-
-                  </div>
-                  <p className="text-sm italic text-muted-foreground">But above all, Come as you&apos;re comfortable!</p>
-                </div>
-              </Card>
+  
             </div>
-
-            <Card className="p-6 border-accent/20 bg-card/70 backdrop-blur-sm">
-              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2 text-[hsl(var(--heading))]">
-                <ShoppingBag className="w-5 h-5 text-accent" />
-                Shopping Suggestions
-              </h3>
-              <p className="text-muted-foreground mb-3">Find perfect gifts at these recommended stores:</p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Peekaboo</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Toyworld</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Wamachua (Instagram)</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Babyshop Village Market</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Karen The Hub</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Woolworths</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Kids World</span>
-                <span className="px-3 py-1 bg-accent/10 rounded-full text-sm">Jumia</span>
-              </div>
-            </Card>
           </div>
         </section>
 
