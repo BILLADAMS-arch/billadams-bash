@@ -26,9 +26,12 @@ const Index = () => {
               transition={{ duration: 0.6 }}
               className="mb-8"
             >
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
-                <span className="text-sm font-medium text-primary">Graduation Ceremony: November 14, 2025 | Birthday Bash: November 15, 2025</span>
-              </div>
+              <div className="inline-flex items-center gap-2 bg-blue-900 px-4 py-2 rounded-full mb-6">
+  <span className="text-sm font-medium text-white">
+    Graduation Ceremony: November 14, 2025 | Birthday Bash: November 15, 2025
+  </span>
+</div>
+
 
               {/* Updated to dark navy heading color */}
               <h1 className="text-6xl md:text-8xl font-bold text-[hsl(var(--heading))] mb-4">

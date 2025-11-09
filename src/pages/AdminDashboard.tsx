@@ -208,6 +208,28 @@ const AdminDashboard = () => {
       </div>
     );
   }
+// Delete guest by ID
+const handleDeleteGuest = async (guestId: string) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this guest?");
+  if (!confirmDelete) return;
+
+  try {
+    const { error } = await supabase
+      .from("guests")
+      .delete()
+      .eq("id", guestId);
+
+    if (error) throw error;
+
+    // Remove deleted guest from UI immediately
+    setGuests((prevGuests) => prevGuests.filter((guest) => guest.id !== guestId));
+
+    alert("Guest deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting guest:", error);
+    alert("Failed to delete guest. Check console for details.");
+  }
+};
 
   if (!allowed) return null;
 
@@ -351,18 +373,28 @@ const AdminDashboard = () => {
                       <TableHead>Date</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody>
-                    {guests.map((guest) => (
-                      <TableRow key={guest.id}>
-                        <TableCell className="font-medium">{guest.name}</TableCell>
-                        <TableCell>{guest.contact}</TableCell>
-                        <TableCell>{getRSVPBadge(guest.rsvp_status)}</TableCell>
-                        <TableCell>{guest.adults_count || 0}</TableCell>
-                        <TableCell>{guest.children_count || 0}</TableCell>
-                        <TableCell>{new Date(guest.created_at).toLocaleDateString()}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
+                 <TableBody>
+  {guests.map((guest) => (
+    <TableRow key={guest.id}>
+      <TableCell className="font-medium">{guest.name}</TableCell>
+      <TableCell>{guest.contact}</TableCell>
+      <TableCell>{getRSVPBadge(guest.rsvp_status)}</TableCell>
+      <TableCell>{guest.adults_count || 0}</TableCell>
+      <TableCell>{guest.children_count || 0}</TableCell>
+      <TableCell>{new Date(guest.created_at).toLocaleDateString()}</TableCell>
+      <TableCell>
+        <Button
+          variant="destructive"
+          size="sm"
+          onClick={() => handleDeleteGuest(guest.id)}
+        >
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
+
                 </Table>
               </CardContent>
             </Card>

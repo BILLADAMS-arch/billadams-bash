@@ -1,8 +1,8 @@
 -- Clear existing sample gifts
-DELETE FROM public.gifts;
+DELETE FROM gifts;
 
 -- Insert new gifts for Jonathan's birthday
-INSERT INTO public.gifts (name, description, price_estimate, image_url, link) VALUES
+INSERT INTO gifts (name, description, price_estimate, image_url, link) VALUES
 -- Ride-Ons & Movement
 ('Tricycle with Push Handle', 'For guided riding until he pedals independently', 150, NULL, 'https://www.jumia.co.ke/tricycles'),
 ('Small Bicycle with Training Wheels', 'Perfect for later in the year as he grows', 200, NULL, 'https://www.jumia.co.ke/kids-bikes'),
