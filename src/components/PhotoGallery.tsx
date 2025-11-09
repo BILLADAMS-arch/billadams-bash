@@ -11,48 +11,51 @@ import {
 } from "@/components/ui/carousel";
 
 // Import all gallery images
-import JJ1 from "@/assets/gallery/JJ1.jpeg";
-import JJ2 from "@/assets/gallery/JJ2.jpeg";
-import JJ3 from "@/assets/gallery/JJ3.jpeg";
-import JJ4 from "@/assets/gallery/JJ4.jpeg";
-import JJ5 from "@/assets/gallery/JJ5.jpeg";
-import JJ6 from "@/assets/gallery/JJ6.jpeg";
-import JJ7 from "@/assets/gallery/JJ7.jpeg";
-import JJ8 from "@/assets/gallery/JJ8.jpeg";
-import JJ9 from "@/assets/gallery/JJ9.jpeg";
-import JJ10 from "@/assets/gallery/JJ10.jpeg";
-import JJ11 from "@/assets/gallery/JJ11.jpeg";
-import JJ12 from "@/assets/gallery/JJ12.jpeg";
-import JJ13 from "@/assets/gallery/JJ13.jpeg";
-import JJ14 from "@/assets/gallery/JJ14.jpeg";
-import JJ15 from "@/assets/gallery/JJ15.jpeg";
-import JJ16 from "@/assets/gallery/JJ16.jpeg";
-import JJ18 from "@/assets/gallery/JJ18.jpeg";
-import JJ20 from "@/assets/gallery/JJ20.jpeg";
-import JJ21 from "@/assets/gallery/JJ21.jpeg";
-
+import billy1 from "@/assets/gallery/billy1.jpeg";
+import billy2 from "@/assets/gallery/billy2.jpeg";
+import billy3 from "@/assets/gallery/billy3.jpeg";
+import billy4 from "@/assets/gallery/billy4.jpeg";
+import billy22 from "@/assets/gallery/billy22.jpeg";
+import billy6 from "@/assets/gallery/billy6.jpeg";
+import billy23 from "@/assets/gallery/billy23.jpeg";
+import billy8 from "@/assets/gallery/billy8.jpeg";
+import billy9 from "@/assets/gallery/billy9.jpeg";
+import billy10 from "@/assets/gallery/billy10.jpeg";
+import billy11 from "@/assets/gallery/billy11.jpeg";
+import billy12 from "@/assets/gallery/billy12.jpeg";
+import billy13 from "@/assets/gallery/billy13.jpeg";
+import billy14 from "@/assets/gallery/billy14.jpeg";
+import billy15 from "@/assets/gallery/billy15.jpeg";
+import billy16 from "@/assets/gallery/billy16.jpeg";
+import billy17 from "@/assets/gallery/billy17.jpeg";
+import billy18 from "@/assets/gallery/billy18.jpeg";
+import billy19 from "@/assets/gallery/billy19.jpeg";
+import billy20 from "@/assets/gallery/billy20.jpeg";
+import billy21 from "@/assets/gallery/billy21.jpeg";
 
 
 const galleryImages = [
-  { src: JJ1, alt: "Baby Jonathan wrapped in a soft blanket" },
-  { src: JJ2, alt: "Jonathan in star-patterned outfit" },
-  { src: JJ3, alt: "Jonathan in formal attire with bow tie" },
-  { src: JJ4, alt: "Jonathan in yellow overalls" },
-  { src: JJ5, alt: "Jonathan in adorable blue bear outfit" },
-  { src: JJ6, alt: "Jonathan in cozy blue bear costume" },
-  { src: JJ7, alt: "Jonathan in mint green outfit" },
-  { src: JJ8, alt: "Jonathan smiling in red outfit" },
-  { src: JJ9, alt: "Jonathan looking curious" },
-  { src: JJ10, alt: "Jonathan in blue fuzzy outfit smiling" },
-  { src: JJ11, alt: "Jonathan with dad" },
-  { src: JJ12, alt: "Jonathan on 1 month" },
-  { src: JJ13, alt: "Jonathan on 1 month" },
-  { src: JJ14, alt: "Jonathan on 1 month" },
-  { src: JJ15, alt: "Jonathan on 1 month" },
-  { src: JJ16, alt: "Jonathan on 1 month" },
-  { src: JJ18, alt: "Jonathan on 1 month" },
-  { src: JJ20, alt: "Jonathan on 1 month" },
-  { src: JJ21, alt: "Jonathan on 1 month" },
+  { src: billy1, alt: "Baby Jonathan wrapped in a soft blanket" },
+  { src: billy2, alt: "Jonathan in star-patterned outfit" },
+  { src: billy3, alt: "Jonathan in formal attire with bow tie" },
+  { src: billy4, alt: "Jonathan in yellow overalls" },
+  { src: billy22, alt: "Jonathan in adorable blue bear outfit" },
+  { src: billy6, alt: "Jonathan in cozy blue bear costume" },
+  { src: billy23, alt: "Jonathan in mint green outfit" },
+  { src: billy8, alt: "Jonathan smiling in red outfit" },
+  { src: billy9, alt: "Jonathan looking curious" },
+  { src: billy10, alt: "Jonathan in blue fuzzy outfit smiling" },
+  { src: billy11, alt: "Jonathan with dad" },
+  { src: billy12, alt: "Jonathan on 1 month" },
+  { src: billy13, alt: "Jonathan on 1 month" },
+  { src: billy14, alt: "Jonathan on 1 month" },
+  { src: billy15, alt: "Jonathan on 1 month" },
+  { src: billy16, alt: "Jonathan on 1 month" },
+  { src: billy17, alt: "Jonathan on 1 month" },
+  { src: billy18, alt: "Jonathan on 1 month" },
+  { src: billy19, alt: "Jonathan on 1 month" },
+  { src: billy20, alt: "Jonathan on 1 month" },
+  { src: billy21, alt: "Jonathan on 1 month" },
   
 
 ];
