@@ -27,7 +27,6 @@ const RSVP = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Validate required fields
     if (!formData.name || !formData.contact) {
       toast({
         title: "Missing info",
@@ -39,7 +38,6 @@ const RSVP = () => {
     }
 
     try {
-      // Insert guest into Supabase (no event_id)
       const { data, error } = await supabase
         .from("guests")
         .insert([
@@ -56,7 +54,6 @@ const RSVP = () => {
 
       if (error) throw error;
 
-      // Store guest ID for other pages (gift reservation, guestbook, etc.)
       if (data) {
         localStorage.setItem("guestId", data.id);
       }
@@ -141,19 +138,43 @@ const RSVP = () => {
                     value={formData.rsvp_status}
                     onValueChange={(value) => setFormData({ ...formData, rsvp_status: value })}
                   >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="attending" id="attending" />
-                      <Label htmlFor="attending" className="cursor-pointer">
-                        Yes, I'll be there! 🎉
-                      </Label>
-                    </div>
+                    {/* Attending */}
+                    <label
+                      htmlFor="attending"
+                      className={`flex items-center gap-2 p-2 rounded-md border-2 cursor-pointer transition-all duration-200
+                        ${formData.rsvp_status === "attending" ? "bg-black text-white border-black" : "border-gray-300"}`}
+                    >
+                      <RadioGroupItem
+                        value="attending"
+                        id="attending"
+                        className="h-6 w-6 rounded-full border-2 border-gray-300
+                                   checked:bg-black checked:border-black relative
+                                   before:absolute before:top-1/2 before:left-1/2
+                                   before:h-3 before:w-3 before:-translate-x-1/2 before:-translate-y-1/2
+                                   before:rounded-full before:bg-white before:opacity-0
+                                   checked:before:opacity-100 transition-all duration-200"
+                      />
+                      Yes, I'll be there! 🎉
+                    </label>
 
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="not_attending" id="not_attending" />
-                      <Label htmlFor="not_attending" className="cursor-pointer">
-                        Sorry, can't make it
-                      </Label>
-                    </div>
+                    {/* Not Attending */}
+                    <label
+                      htmlFor="not_attending"
+                      className={`flex items-center gap-2 p-2 rounded-md border-2 cursor-pointer transition-all duration-200
+                        ${formData.rsvp_status === "not_attending" ? "bg-black text-white border-black" : "border-gray-300"}`}
+                    >
+                      <RadioGroupItem
+                        value="not_attending"
+                        id="not_attending"
+                        className="h-6 w-6 rounded-full border-2 border-gray-300
+                                   checked:bg-black checked:border-black relative
+                                   before:absolute before:top-1/2 before:left-1/2
+                                   before:h-3 before:w-3 before:-translate-x-1/2 before:-translate-y-1/2
+                                   before:rounded-full before:bg-white before:opacity-0
+                                   checked:before:opacity-100 transition-all duration-200"
+                      />
+                      Sorry, can't make it
+                    </label>
                   </RadioGroup>
                 </div>
 
