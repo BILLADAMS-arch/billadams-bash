@@ -70,33 +70,7 @@ const Index = () => {
               </Button>
             </Card>
 
-            {/* Bill's Wishlist */}
-            <Card className="p-3 w-48 flex-shrink-0 hover:shadow-xl transition-all border-secondary/20 bg-card/70 backdrop-blur-sm">
-              <div className="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-2">
-                <Gift className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <h3 className="text-sm font-semibold mb-1">Bill's Wishlist</h3>
-              <p className="text-xs text-muted-foreground mb-1">
-                Browse and reserve gifts from Bill&apos;s wishlist
-              </p>
-              <Button variant="link" className="p-0 text-xs" asChild>
-                <Link to="/gifts">View Wish List →</Link>
-              </Button>
-            </Card>
-
-            {/* Guestbook */}
-            <Card className="p-3 w-48 flex-shrink-0 hover:shadow-xl transition-all border-accent/20 bg-card/70 backdrop-blur-sm">
-              <div className="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center mb-2">
-                <Heart className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <h3 className="text-sm font-semibold mb-1">Guestbook</h3>
-              <p className="text-xs text-muted-foreground mb-1">
-                Leave birthday wishes and messages
-              </p>
-              <Button variant="link" className="p-0 text-xs" asChild>
-                <Link to="/guestbook">Write a Message →</Link>
-              </Button>
-            </Card>
+       
           </div>
         </section>
 
