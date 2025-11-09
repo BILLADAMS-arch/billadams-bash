@@ -24,9 +24,10 @@ const Index = () => {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <div className="inline-flex items-center gap-1 bg-blue-900 px-2 py-1 rounded-full mb-4 text-xs">
-              Graduation: Nov 14 | Birthday Bash: Nov 15
-            </div>
+            <div className="inline-flex items-center gap-1 bg-blue-900 px-3 py-1.5 rounded-full mb-4 text-xs sm:text-sm font-bold text-white shadow-sm">
+  Graduation Ceremony: November 14, 2025 | Birthday Bash: November 15, 2025
+</div>
+
 
             <h1 className="text-3xl sm:text-4xl font-bold text-[hsl(var(--heading))] mb-4">
               Welcome to BILL ADAMS' World🎓🎉
