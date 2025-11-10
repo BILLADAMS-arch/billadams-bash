@@ -81,17 +81,10 @@ const Index = () => {
         </p>
         <p className="flex items-center gap-1 text-sm">
           <MapPin className="w-4 h-4 text-primary" />
-          <span>
-            <span className="font-semibold">Venue:</span>{" "}
-            <a
-              href="https://maps.app.goo.gl/hj9t6Ah2ZooddgU76?g_st=ipc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline hover:text-accent"
-            >
-              A.S.K Dome
-            </a>
-          </span>
+<span>
+  <span className="font-semibold">Venue:</span> A.S.K Dome
+</span>
+
         </p>
       </div>
     </Card>
