@@ -102,7 +102,7 @@ export default function PhotoGallery() {
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="w-full h-[400px] object-cover rounded-lg shadow-lg cursor-pointer"
+                        className="w-full h-[400px] object-cover  cursor-pointer"
                         onClick={() => setSelectedImage(index)}
                       />
                     </div>
