@@ -86,7 +86,7 @@ export default function PhotoGallery() {
             viewport={{ once: true }}
             className="text-center mb-0"
           >
-            <p className="text-2xl font-bold  mb-2">
+            <p className="text-2xl font-bold  mb-0">
   Bill's Photo Gallery
 </p>
 
