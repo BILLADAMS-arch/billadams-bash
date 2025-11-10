@@ -44,6 +44,8 @@ const Guestbook = () => {
       });
 
       setFormData({ message: "" });
+      // Redirect to home after 3 seconds
+      setTimeout(() => navigate("/"), 3000);
 
     } catch (error: any) {
       toast({
