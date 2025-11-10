@@ -77,23 +77,23 @@ export default function PhotoGallery() {
 
   return (
     <>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary-50/50 to-background">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-16 px-4 sm:px-4 lg:px-4 bg-gradient-to-b from-primary-50/50 to-background">
+        <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-0"
           >
-            <h2 className="text-4xl font-bold text-[hsl(var(--heading))] mb-4">
+            <p className="text-2xl font-bold  mb-2">
   Bill's Photo Gallery
-</h2>
+</p>
 
           </motion.div>
 
           {/* Mobile Carousel */}
-          <div className="md:hidden">
+          <div className="md:shown">
             <Carousel className="w-full">
               <CarouselContent>
                 {galleryImages.map((image, index) => (
