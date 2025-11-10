@@ -57,7 +57,7 @@ const Index = () => {
       </div>
       <h3 className="text-base font-semibold mb-2 text-center">RSVP</h3>
       <p className="text-sm text-muted-foreground mb-3 text-center">
-        Join me in commemorating this special journey. Your presence and support mean the world to me!
+      Your presence and support mean the world to me!
       </p>
       <Button variant="link" className="p-0 text-sm w-full text-center" asChild>
         <Link to="/rsvp">Respond Now →</Link>
